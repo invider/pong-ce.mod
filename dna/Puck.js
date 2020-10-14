@@ -1,8 +1,11 @@
+const MAX_SPEED = 500
+const HIT_ACCELERATION = 1.05
+
 const df = {
     x: 0,
     y: 0,
     r: 10,
-    speed: 300,
+    speed: 150,
 }
 
 class Puck {
@@ -11,8 +14,8 @@ class Puck {
         augment(this, df)
         augment(this, st)
 
-        // select random direction
-        const fi = rnd() * TAU
+        // select a random direction
+        let fi = (rnd() * .4*PI - .2*PI) - PI * floor(rnd(2))
         this.dx = cos(fi)
         this.dy = sin(fi)
     }
@@ -25,11 +28,11 @@ class Puck {
 
         const r = this.r
         if (this.x < r) {
-            this.x = r
-            this.dx *= -1
+            kill(this)
+            trap('score', 'right')
         } else if (this.x > rx(1)-r) {
-            this.x = rx(1)-r
-            this.dx *= -1
+            kill(this)
+            trap('score', 'left')
         }
         if (this.y < r) {
             this.y = r
@@ -43,7 +46,10 @@ class Puck {
         const puck = this
         lab._ls.forEach(e => {
             if (e.touch) {
-                if (e.touch(puck)) touched = true
+                if (e.touch(puck)) {
+                    touched = true
+                    this.speed = min(this.speed * HIT_ACCELERATION, MAX_SPEED)
+                }
             }
         })
 
@@ -64,7 +70,8 @@ class Puck {
         lineWidth(2)
         stroke(.55, .5, .5)
         circle(0, 0, this.r)
-        // line(0, 0, this.dx * 30, this.dy * 30) // speed vector
+
+        //line(0, 0, this.dx * 30, this.dy * 30) // speed vector
         restore()
     }
 
