@@ -1,5 +1,5 @@
 function score(player) {
     env.score[player] ++
-    trap('puck')
+    trap('spawnPuck')
     lib.sfx(res.sfx.score, .8)
 }

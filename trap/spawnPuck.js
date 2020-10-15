@@ -1,4 +1,4 @@
-function puck() {
+function spawnPuck() {
     lab.spawn('Puck', {
         name: 'puck',
         x: rx(.5),
