@@ -4,8 +4,8 @@ function keyDown(e) {
             trap('newGame')
             break
 
-        case 'KeyW': lab.left.up(true); break;
-        case 'KeyS': lab.left.down(true); break;
+        case 'KeyA': lab.left.up(true); break;
+        case 'KeyZ': lab.left.down(true); break;
         case 'ArrowUp': lab.right.up(true); break;
         case 'ArrowDown': lab.right.down(true); break;
     }

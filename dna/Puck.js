@@ -22,7 +22,7 @@ class Puck {
     }
 
     evo(dt) {
-        if (lab.score.hold) return // the counter is till on
+        if (lab.score.countdown) return // the counter is till on
         if (this.hold > 0) {
             // hold on
             this.hold -= dt

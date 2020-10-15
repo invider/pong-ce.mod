@@ -1,12 +1,12 @@
 function evo(dt) {
-    if (this.hold > 0) {
-        const prev = this.hold
-        this.hold -= dt
-        if (this.hold < 0) {
-            this.hold = 0
+    if (this.countdown > 0) {
+        const prev = this.countdown
+        this.countdown -= dt
+        if (this.countdown < 0) {
+            this.countdown = 0
             sfx(res.sfx.start, .7)
         }
-        if (floor(prev) > floor(this.hold)) sfx(res.sfx.count, .5)
+        if (floor(prev) > floor(this.countdown)) sfx(res.sfx.count, .5)
     }
 }
 
@@ -29,10 +29,10 @@ function draw() {
     text('' + env.score.left,  rx(.25), y)
     text('' + env.score.right, rx(.75), y)
 
-    // timer
-    if (this.hold > 0) {
+    // count-down timer
+    if (this.countdown > 0) {
         fill(.15, .4, .5)
         font('64px moon')
-        text('' + ceil(this.hold),  rx(.5), ry(.2))
+        text('' + ceil(this.countdown),  rx(.5), ry(.2))
     }
 }
