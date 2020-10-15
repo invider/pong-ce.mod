@@ -5,5 +5,4 @@ function puck() {
         y: ry(.5),
         speed: ry(.8),
     })
-    lib.sfx(res.sfx.slide, .5)
 }

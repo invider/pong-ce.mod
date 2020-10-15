@@ -5,6 +5,12 @@ function newGame() {
     }
     lab.left.y = ry(.5)
     lab.right.y = ry(.5)
+
+    // replace the puck
     kill(lab.puck)
     trap('puck')
+
+    // show the start timer
+    lab.score.hold = 3
+    lab.puck.hold = 0
 }

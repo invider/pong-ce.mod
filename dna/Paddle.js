@@ -45,7 +45,12 @@ class Paddle {
         const d = lib.math.distanceToSegment(puck.x, puck.y, x, y1, x, y2)
 
         if (d < puck.r) {
+            // calculate normal vector components
             const nvec = lib.math.normalVector(x, y1, x, y2) 
+            // normal vector is inverted for the left paddle
+            // |           |
+            // |-->  o  <--|
+            // |           |
             const nx = this.left? -nvec[0] : nvec[0]
             const ny = this.left? -nvec[1] : nvec[1]
 
@@ -58,9 +63,7 @@ class Paddle {
 
             puck.dx = cos(fi)
             puck.dy = sin(fi)
-            //puck.dx = -puck.dx
-            //puck.dy = -puck.dy
-            
+
             lib.sfx(res.sfx.boing, .3)
             return true
         }
@@ -69,8 +72,8 @@ class Paddle {
 
     evo(dt) {
         // adjust x coordinate
-        if (this.left) this.x = 50
-        else this.x = rx(1) - 50
+        if (this.left) this.x = rx(.05)
+        else this.x = rx(1) - rx(.05)
 
         if (this.actions.up) {
             this.y -= this.speed * dt
@@ -87,16 +90,8 @@ class Paddle {
         translate(this.x, this.y)
 
         lineWidth(2)
-        stroke(.65, .5, .5)
+        fill(.6, .35, .45)
         rect(-this.w/2, -this.h/2, this.w, this.h)
-
-        /*
-        const { x1, y1, x2, y2 } = this.rect()
-        const nvec = lib.math.normalVector(x1, y1, x2, y2) 
-        const nx = nvec[0]
-        const ny = nvec[1]
-        line(0, 0
-        */
 
         restore()
     }
