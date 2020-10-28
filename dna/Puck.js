@@ -12,8 +12,7 @@ const df = {
 class Puck {
 
     constructor(st) {
-        augment(this, df) // set default values
-        augment(this, st) // set init values
+        augment(this, df, st) // set default  and init values
 
         // select a random direction
         let fi = ( rnd() * .4*PI - .2*PI ) - ( PI * floor(rnd(2)) )

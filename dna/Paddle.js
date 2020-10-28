@@ -19,8 +19,7 @@ const REFLECT_VECTORS = [
 class Paddle {
 
     constructor(st) {
-        augment(this, df)
-        augment(this, st)
+        augment(this, df, st) // set default and init values
         this.actions = {}
         this.speed = ry(1)
     }
