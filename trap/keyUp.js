@@ -1,8 +1,8 @@
 function keyUp(e) {
     switch(e.code) {
-        case 'KeyA': lab.left.up(false); break;
-        case 'KeyZ': lab.left.down(false); break;
-        case 'ArrowUp': lab.right.up(false); break;
-        case 'ArrowDown': lab.right.down(false); break;
+        case 'KeyW': case 'KeyA': lab.left.up(false); break;
+        case 'KeyS': case 'KeyZ': lab.left.down(false); break;
+        case 'ArrowUp':   case 'PageUp':   lab.right.up(false); break;
+        case 'ArrowDown': case 'PageDown': lab.right.down(false); break;
     }
 }
