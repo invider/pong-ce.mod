@@ -15,6 +15,6 @@ function newGame() {
     trap('spawnPuck')
 
     // show the start timer
-    lab.score.hold = 3
+    lab.score.countdown = 3
     lab.puck.hold = 0 // puck shouldn't wait
 }

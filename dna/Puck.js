@@ -6,7 +6,7 @@ const df = {
     y: 0,
     r: 10,
     hold: 1,
-    speed: 150,
+    speed: 100,
 }
 
 class Puck {
@@ -52,10 +52,12 @@ class Puck {
             // reflect from the top edge
             this.y = r
             this.dy *= -1
+            lib.sfx(res.sfx.boing, .2)
         } else if (this.y > ry(1)-r) {
             // reflect from the bottom edge
             this.y = ry(1)-r
             this.dy *= -1
+            lib.sfx(res.sfx.boing, .2)
         }
 
         // detect collision with paddles
