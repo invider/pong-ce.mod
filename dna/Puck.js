@@ -21,7 +21,8 @@ class Puck {
     }
 
     evo(dt) {
-        if (lab.score.countdown) return // the counter is till on
+        if (lab.score.countdown) return // the counter is still on
+
         if (this.hold > 0) {
             // hold on
             this.hold -= dt
@@ -32,7 +33,9 @@ class Puck {
         // save previous x/y
         const px = this.x
         const py = this.y
+
         // move
+        let touched = false
         this.x += this.dx * this.speed * dt
         this.y += this.dy * this.speed * dt
 
@@ -51,16 +54,17 @@ class Puck {
             // reflect from the top edge
             this.y = r
             this.dy *= -1
+            touched = true
             lib.sfx(res.sfx.boing, .2)
         } else if (this.y > ry(1)-r) {
             // reflect from the bottom edge
             this.y = ry(1)-r
             this.dy *= -1
+            touched = true
             lib.sfx(res.sfx.boing, .2)
         }
 
         // detect collision with paddles
-        let touched = false
         const puck = this
         lab._ls.forEach(e => {
             if (e.touch) {
@@ -75,8 +79,6 @@ class Puck {
             // move back to previous coordinates
             this.x = px
             this.y = py
-            this.x += this.dx * this.speed * dt
-            this.y += this.dy * this.speed * dt
         }
     }
 

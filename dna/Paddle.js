@@ -74,13 +74,14 @@ class Paddle {
         if (this.left) this.x = rx(.05)
         else this.x = rx(1) - rx(.05)
 
+        // move according to pressed keys
         if (this.actions.up) {
             this.y -= this.speed * dt
-            if (this.y < this.h/2) this.y = this.h/2
+            if (this.y < this.h/2) this.y = this.h/2 // top edge
         }
         if (this.actions.down) {
             this.y += this.speed * dt
-            if (this.y > ry(1)-this.h/2) this.y = ry(1)-this.h/2
+            if (this.y > ry(1)-this.h/2) this.y = ry(1)-this.h/2 // bottom edge
         }
     }
 
