@@ -12,7 +12,7 @@ const df = {
 class Puck {
 
     constructor(st) {
-        augment(this, df, st) // set default  and init values
+        augment(this, df, st) // set default and init values
 
         // select a random direction
         let fi = ( rnd() * .4*PI - .2*PI ) - ( PI * floor(rnd(2)) )
@@ -23,9 +23,12 @@ class Puck {
     evo(dt) {
         if (lab.score.countdown) return // the counter is still on
 
+        // we need a hold timer to prevent the puck
+        // from moving the moment it's been created
         if (this.hold > 0) {
             // hold on
             this.hold -= dt
+            // start the movement when the time is up
             if (this.hold < 0) lib.sfx(res.sfx.slide, .5)
             return
         }
@@ -67,11 +70,9 @@ class Puck {
         // detect collision with paddles
         const puck = this
         lab._ls.forEach(e => {
-            if (e.touch) {
-                if (e.touch(puck)) {
-                    touched = true
-                    this.speed = min(this.speed * HIT_ACCELERATION, MAX_SPEED)
-                }
+            if (e.touch && e.touch(puck)) {
+                touched = true
+                this.speed = min(this.speed * HIT_ACCELERATION, MAX_SPEED)
             }
         })
 

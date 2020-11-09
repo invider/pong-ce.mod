@@ -20,8 +20,8 @@ class Paddle {
 
     constructor(st) {
         augment(this, df, st) // set default and init values
-        this.actions = {}
-        this.speed = ry(1)
+        this.actions = {}     // a storage object for up and down actions
+        this.speed = ry(1)    // speed = screen width in pixels
     }
 
     init() {
@@ -39,7 +39,6 @@ class Paddle {
 
     touch(puck) {
         const { x1, y1, x2, y2 } = this.rect()
-
         const x = this.left? x2 : x1
         const d = lib.math.distanceToSegment(puck.x, puck.y, x, y1, x, y2)
 
@@ -53,8 +52,10 @@ class Paddle {
             const nx = this.left? -nvec[0] : nvec[0]
             const ny = this.left? -nvec[1] : nvec[1]
 
+            // calculate relative vertical hit point
             const dy = puck.y - this.y
 
+            // reflection angles are inverted for the left paddle
             const dir = this.left? -1 : 1
             let fi = atan2(ny, nx)
             const zone = limit(floor((dy + 50)/10), 0, 9)
@@ -72,7 +73,7 @@ class Paddle {
     evo(dt) {
         // adjust x coordinate
         if (this.left) this.x = rx(.05)
-        else this.x = rx(1) - rx(.05)
+        else this.x = rx(.95)
 
         // move according to pressed keys
         if (this.actions.up) {
@@ -89,7 +90,6 @@ class Paddle {
         save()
         translate(this.x, this.y)
 
-        lineWidth(2)
         fill(.6, .35, .45)
         rect(-this.w/2, -this.h/2, this.w, this.h)
 
