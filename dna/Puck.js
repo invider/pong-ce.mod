@@ -29,7 +29,7 @@ class Puck {
             // hold on
             this.hold -= dt
             // start the movement when the time is up
-            if (this.hold < 0) lib.sfx(res.sfx.slide, .5)
+            if (this.hold <= 0) lib.sfx(res.sfx.slide, .5)
             return
         }
 
