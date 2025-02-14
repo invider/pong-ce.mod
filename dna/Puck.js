@@ -1,11 +1,11 @@
-const MAX_SPEED = 1500
-const HIT_ACCELERATION = 1.07
+const MAX_SPEED         = 1500
+const HIT_ACCELERATION  = 1.07
 
 const df = {
-    x: 0,
-    y: 0,
-    r: 10,
-    hold: 1,
+    x:     0,
+    y:     0,
+    r:     10,
+    hold:  1,
     speed: 100,
 }
 

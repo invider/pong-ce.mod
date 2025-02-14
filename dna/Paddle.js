@@ -58,7 +58,7 @@ class Paddle {
             // reflection angles are inverted for the left paddle
             const dir = this.left? -1 : 1
             let fi = atan2(ny, nx)
-            const zone = limit(floor((dy + 50)/10), 0, 9)
+            const zone = clamp(floor((dy + 50)/10), 0, 9)
             fi += dir * REFLECT_VECTORS[zone] * PI
 
             puck.dx = cos(fi)
